@@ -21,7 +21,7 @@ public class Principal {
 		String VERSAO = "0.1";
 		
 		//simulation
-		
+		//172.29.28.212 0 0 1 0 0613
 		//IP<String> Rack<INT> SLOT<INT> DB<INT> OFFSET<INT> HEXA<STRING>
 
 		//10.1.1.2 0 0 100 2 03EF0315
@@ -78,14 +78,15 @@ public class Principal {
         }
 
         try {
-        //Open TCP Connection
-        connector = 
-        		S7ConnectorFactory
-        		.buildTCPConnector()
-        		.withHost(ip)
-        		.withRack(rack)
-        		.withSlot(slot)
-        		.build();
+	        //Open TCP Connection
+	        connector = 
+	        		S7ConnectorFactory
+	        		.buildTCPConnector()
+	        		.withHost(ip)
+	        		.withRack(rack)
+	        		.withSlot(slot)
+	        		.build();
+        	System.out.println("Connected: "+connector.toString());
         }catch (Exception e) {
 			e.printStackTrace();
 			try {
@@ -98,7 +99,8 @@ public class Principal {
 
         
         try {
-        	connector.write(DaveArea.DB, DB, offset, bufferToWrite);	
+        	connector.write(DaveArea.DB, DB, offset, bufferToWrite);
+        	System.out.println("Writed: " + Util.getHex(bufferToWrite));
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {
