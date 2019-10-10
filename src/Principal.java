@@ -53,14 +53,14 @@ public class Principal {
 				bufferToWrite = Util.toByteArray(strByteArrays);
 			}
 		} catch (Exception e2) {
-			// TODO Auto-generated catch block
 			try {
 				Util.gravaLinha("S7log arguments get error: "+args.toString(), "S7Log.txt", "true");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-    		System.exit(0);
+			System.out.println("Error: Getting the args.");
+			System.exit(1);
 		}
 
         //argumentos insuficientes mata o sw.
@@ -72,7 +72,8 @@ public class Principal {
     				// TODO Auto-generated catch block
     				e1.printStackTrace();
     			}
-        		System.exit(0);
+        		System.out.println("Error: The args is not enough.");
+        		System.exit(1);
         		
         	}
         }
@@ -95,20 +96,24 @@ public class Principal {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			
+			System.out.println("Error: Opening the Connection.");
+			System.exit(1);
 		}
 
         
         try {
         	connector.write(DaveArea.DB, DB, offset, bufferToWrite);
-        	System.out.println("Writed: " + Util.getHex(bufferToWrite));
+        	System.out.println("Written:"+Util.getHex(bufferToWrite));
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Error: Writing the values");
 			try {
 				Util.gravaLinha("S7log Write Error: "+e.toString(), "S7Log.txt", "true");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			System.exit(1);
 		}
         
 
@@ -116,13 +121,13 @@ public class Principal {
         try {
         	connector.close();
         } catch (IOException e) {
-        	e.printStackTrace();
         	try {
 				Util.gravaLinha("S7log CloseConnection Error: "+e.toString(), "S7Log.txt", "true");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+        	System.out.println("Error: Closing the Connection.");
         }
 	}
 
