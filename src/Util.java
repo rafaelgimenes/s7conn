@@ -303,7 +303,6 @@ public class Util {
    }
  
  public static void gravaLinha(String linha, String nomeArquivo, String append) throws IOException {
-	 System.out.println(linha);
      FileOutputStream arquivoSaida = null;
      PrintStream escrita = null;
      if(append.equals("true")) {
