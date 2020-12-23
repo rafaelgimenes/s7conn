@@ -18,7 +18,7 @@ public class Principal {
 	 */
 	public static void main(String[] args) {
 		
-		String VERSAO = "0.1";
+		String VERSAO = "0.2";
 		
 		//simulation
 		//172.29.28.212 0 0 1 0 0613
@@ -91,7 +91,7 @@ public class Principal {
         }catch (Exception e) {
 			e.printStackTrace();
 			try {
-				Util.gravaLinha("S7log OpenConnection Error: "+e.toString(), "S7Log.txt", "true");
+				Util.gravaLinha(Util.getDataHoraAtual("yyyy-MM-DD HH:mm")+" S7log OpenConnection Error: "+e.toString(), "S7Log.txt", "true");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -108,7 +108,7 @@ public class Principal {
 		} catch (Exception e) {
 			System.out.println("Error: Writing the values");
 			try {
-				Util.gravaLinha("S7log Write Error: "+e.toString(), "S7Log.txt", "true");
+				Util.gravaLinha(Util.getDataHoraAtual("yyyy-MM-DD HH:mm")+" S7log Write Error: "+e.toString(), "S7Log.txt", "true");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -122,7 +122,7 @@ public class Principal {
         	connector.close();
         } catch (IOException e) {
         	try {
-				Util.gravaLinha("S7log CloseConnection Error: "+e.toString(), "S7Log.txt", "true");
+				Util.gravaLinha(Util.getDataHoraAtual("yyyy-MM-DD HH:mm")+" S7log CloseConnection Error: "+e.toString(), "S7Log.txt", "true");
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
